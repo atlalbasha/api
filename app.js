@@ -3,9 +3,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const ejs = require('ejs')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 //import routes
 const authRoute = require('./routes/auth')

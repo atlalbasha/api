@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const Work = require('./Work')
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -19,8 +18,7 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Please check your data entry, no mobile specified!']
   },
   todo: {
-    type: [],
-    default: 0
+    type: []
   },
 
   date: {

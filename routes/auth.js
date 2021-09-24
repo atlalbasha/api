@@ -4,10 +4,14 @@ const bcrypt = require('bcryptjs')
 
 router.post('/register', async (req, res) => {
   //checking if the user is already registered
-  const userExists = await User.findOne({ name: req.body.name })
-  if (userExists) {
-    return res.status(400).send('User already exists')
-  }
+  User.findOne({ name: req.body.name }, (err, user) => {
+    if (err) {
+      return res.status(400).send(err)
+    }
+    if (user) {
+      return res.status(400).send('User already exists')
+    }
+  })
 
   //hash password
   const salt = await bcrypt.genSalt(10)

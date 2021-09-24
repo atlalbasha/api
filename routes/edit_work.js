@@ -6,7 +6,7 @@ const Work = require('../model/Work')
 router.get('/work', (req, res) => {
   Work.find((err, work) => {
     if (err) {
-      return res.status(400).send('works Not Found')
+      return res.status(400).send(err)
     } else {
       res.send(work)
     }

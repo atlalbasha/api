@@ -4,12 +4,13 @@ const Work = require('../model/Work')
 
 // get all users
 router.get('/user', async (req, res) => {
-  const user = await User.find()
-  if (user.length === 0) {
-    return res.status(400).send('Users Not Found')
-  } else {
-    res.send(user)
-  }
+  User.find((err, user) => {
+    if (err) {
+      return res.status(400).send(err)
+    } else {
+      res.send(user)
+    }
+  })
 })
 
 // get specific user
@@ -33,7 +34,7 @@ router.delete('/user/:id', (req, res) => {
   })
 })
 
-/* router.put('/user/:id', async (req, res) => {
+router.put('/user/:id', async (req, res) => {
   var date = new Date()
   date.now
 
@@ -53,9 +54,10 @@ router.delete('/user/:id', (req, res) => {
     await user.save()
     res.send(user)
   }
-}) */
+})
 
-router.put('/user/:id', (req, res) => {
+// edit specific user
+/* router.put('/user/:id', (req, res) => {
   User.updateOne(
     { _id: req.params.id },
     {
@@ -71,6 +73,6 @@ router.put('/user/:id', (req, res) => {
       }
     }
   )
-})
+}) */
 
 module.exports = router
